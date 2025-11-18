@@ -7,7 +7,8 @@ inputs:
     required: true
   path:
     description: 'The path to the directory containing your CDKTF projects.'
-    required: true
+    required: false
+    default: 'infra'
   cdktf:
     description: 'Whether to use CDKTF (true) or plain Terraform (false).'
     required: false
