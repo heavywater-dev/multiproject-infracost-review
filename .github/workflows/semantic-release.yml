@@ -1,0 +1,64 @@
+name: Semantic Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Semantic Release
+        id: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm exec semantic-release --debug > release-output.txt 2>&1 || true
+          cat release-output.txt
+
+          if grep -q "Published release" release-output.txt; then
+            VERSION=$(grep "Published release" release-output.txt | sed -n 's/.*Published release \([0-9.]*\).*/\1/p')
+            echo "new_release_published=true" >> $GITHUB_OUTPUT
+            echo "new_release_version=$VERSION" >> $GITHUB_OUTPUT
+            echo "Release created: $VERSION"
+          else
+            echo "new_release_published=false" >> $GITHUB_OUTPUT
+            echo "No release created"
+            cat release-output.txt
+          fi
+
+      - name: Update major version tag
+        if: steps.release.outputs.new_release_published == 'true'
+        run: |
+          NEW_TAG="v${{ steps.release.outputs.new_release_version }}"
+          MAJOR_VERSION=$(echo $NEW_TAG | sed 's/\([^.]*\).*/\1/')
+          echo "New release: $NEW_TAG"
+          echo "Updating major tag: $MAJOR_VERSION"
+
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git tag -fa $MAJOR_VERSION -m "Update $MAJOR_VERSION to $NEW_TAG"
+          git push origin $MAJOR_VERSION --force

@@ -1,0 +1,110 @@
+name: 'multiproject-infracost-review'
+description: 'This action generates cost estimates for CDKTF-based multi-project infrastructure using Infracost and automatically posts the results as comments in GitHub pull requests'
+author: 'heavywater-dev'
+inputs:
+  infracost-api-key:
+    description: 'Your Infracost API key. You can get one for free at https://infracost.io/signup/'
+    required: true
+  path:
+    description: 'The path to the directory containing your CDKTF projects.'
+    required: false
+    default: 'infra'
+  cdktf:
+    description: 'Whether to use CDKTF (true) or plain Terraform (false).'
+    required: false
+    default: 'true'
+  environment:
+    description: 'The environment to use for the Infracost breakdown (e.g., "production", "staging").'
+    required: false
+  github-token:
+    description: 'GitHub token used to post comments on pull requests. Typically set to `${{ secrets.GITHUB_TOKEN }}`.'
+    required: true
+  github-repository:
+    description: 'Repository slug (owner/repo). Typically set to `${{ github.repository }}`.'
+    required: true
+  pull-request-number:
+    description: 'Pull request number to comment on. Typically set to `${{ github.event.pull_request.number }}`.'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Validate cdktf input
+      run: |
+        if [[ "${{ inputs.cdktf }}" != "true" && "${{ inputs.cdktf }}" != "false" ]]; then
+          echo "Error: input 'cdktf' must be either 'true' or 'false'."
+          exit 1
+        fi
+      shell: bash
+
+    - name: Setup Infracost
+      uses: infracost/actions/setup@v3
+      with:
+        api-key: ${{ inputs.infracost-api-key }}
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        cache: pnpm
+
+    - name: Checkout base branch
+      uses: actions/checkout@v5
+      with:
+        ref: '${{ github.event.pull_request.base.ref }}'
+
+    - name: Generate baseline plan
+      run: |
+        chmod +x ${{ github.action_path }}/scripts/generate_plan.sh
+        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.environment }}" "${{ inputs.cdktf }}"
+      shell: bash
+      working-directory: ${{ github.workspace }}
+
+    - name: Generate Infracost cost estimate for baseline
+      run: |
+        chmod +x ${{ github.action_path }}/scripts/generate_infracost_estimate.sh
+        ${{ github.action_path }}/scripts/generate_infracost_estimate.sh "${{ inputs.path }}" "${{ inputs.environment }}" "/tmp/infracost-base.json"
+      shell: bash
+      working-directory: ${{ github.workspace }}
+
+    - name: Checkout PR branch
+      uses: actions/checkout@v5
+
+    - name: Generate PR plan
+      run: |
+        chmod +x ${{ github.action_path }}/scripts/generate_plan.sh
+        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.environment }}" "${{ inputs.cdktf }}"
+      shell: bash
+      working-directory: ${{ github.workspace }}
+
+    - name: Generate Infracost cost estimate for PR
+      run: |
+        chmod +x ${{ github.action_path }}/scripts/generate_infracost_estimate.sh
+        ${{ github.action_path }}/scripts/generate_infracost_estimate.sh "${{ inputs.path }}" "${{ inputs.environment }}" "/tmp/infracost-pr.json"
+      shell: bash
+      working-directory: ${{ github.workspace }}
+
+    - name: Generate Infracost diff
+      run: |
+        chmod +x ${{ github.action_path }}/scripts/generate_infracost_diff.sh
+        ${{ github.action_path }}/scripts/generate_infracost_diff.sh \
+          --base-file "/tmp/infracost-base.json" \
+          --head-file "/tmp/infracost-pr.json" \
+          --out-file "/tmp/infracost-diff.json"
+      shell: bash
+      working-directory: ${{ github.workspace }}
+
+    - name: Post Infracost comment to PR
+      run: |
+        chmod +x ${{ github.action_path }}/scripts/generate_infracost_comment.sh
+        ${{ github.action_path }}/scripts/generate_infracost_comment.sh \
+          --repo "${{ inputs.github-repository }}" \
+          --github-token "${{ inputs.github-token }}" \
+          --pull-request "${{ inputs.pull-request-number }}"
+      shell: bash
+      working-directory: ${{ github.workspace }}
