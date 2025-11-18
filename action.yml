@@ -19,6 +19,9 @@ inputs:
   github-token:
     description: 'GitHub token used to post comments on pull requests. Typically set to `${{ secrets.GITHUB_TOKEN }}`.'
     required: true
+  pull-request-base:
+    description: 'The base branch for the pull request. Typically set to `${{ github.event.pull_request.base.ref }}`.'
+    required: true
   github-repository:
     description: 'Repository slug (owner/repo). Typically set to `${{ github.repository }}`.'
     required: true
@@ -56,7 +59,7 @@ runs:
     - name: Checkout base branch
       uses: actions/checkout@v5
       with:
-        ref: '${{ github.event.pull_request.base.ref }}'
+        ref: '${{ inputs.pull-request-base }}'
 
     - name: Generate baseline plan
       run: |
