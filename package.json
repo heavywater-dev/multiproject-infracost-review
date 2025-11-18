@@ -1,6 +1,6 @@
 {
 	"name": "multiproject-infracost-review",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "This action generates cost estimates for CDKTF-based multi-project infrastructure using Infracost and automatically posts the results as comments in GitHub pull requests",
 	"scripts": {},
 	"author": "heavywater-dev",
