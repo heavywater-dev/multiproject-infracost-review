@@ -5,6 +5,10 @@
 	"scripts": {},
 	"author": "heavywater-dev",
 	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/heavywater-dev/multiproject-infracost-review.git"
+	},
 	"devDependencies": {
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/commit-analyzer": "^11.1.0",
