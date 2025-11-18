@@ -42,6 +42,7 @@ jobs:
           infracost-api-key: ${{ secrets.INFRACOST_API_KEY }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-repository: ${{ github.repository }}
+          pull-request-base: ${{ github.event.pull_request.base.ref }}
           pull-request-number: ${{ github.event.pull_request.number }}
           path: infra
           environment: production
@@ -121,6 +122,7 @@ jobs:
           infracost-api-key: ${{ secrets.INFRACOST_API_KEY }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-repository: ${{ github.repository }}
+          pull-request-base: ${{ github.event.pull_request.base.ref }}
           pull-request-number: ${{ github.event.pull_request.number }}
           path: infra
           environment: production
