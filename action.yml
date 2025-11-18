@@ -17,16 +17,16 @@ inputs:
     description: 'The environment to use for the Infracost breakdown (e.g., "production", "staging").'
     required: false
   github-token:
-    description: 'GitHub token used to post comments on pull requests. Typically set to `${{ secrets.GITHUB_TOKEN }}`.'
+    description: 'GitHub token used to post comments on pull requests.'
     required: true
   pull-request-base:
-    description: 'The base branch for the pull request. Typically set to `${{ github.event.pull_request.base.ref }}`.'
+    description: 'The base branch for the pull request.'
     required: true
   github-repository:
-    description: 'Repository slug (owner/repo). Typically set to `${{ github.repository }}`.'
+    description: 'Repository slug (owner/repo).'
     required: true
   pull-request-number:
-    description: 'Pull request number to comment on. Typically set to `${{ github.event.pull_request.number }}`.'
+    description: 'Pull request number to comment on.'
     required: true
 
 runs:
