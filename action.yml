@@ -8,6 +8,10 @@ inputs:
   path:
     description: 'The path to the directory containing your CDKTF projects.'
     required: true
+  cdktf:
+    description: 'Whether to use CDKTF (true) or plain Terraform (false).'
+    required: false
+    default: 'true'
   environment:
     description: 'The environment to use for the Infracost breakdown (e.g., "production", "staging").'
     required: false
@@ -24,6 +28,14 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Validate cdktf input
+      run: |
+        if [[ "${{ inputs.cdktf }}" != "true" && "${{ inputs.cdktf }}" != "false" ]]; then
+          echo "Error: input 'cdktf' must be either 'true' or 'false'."
+          exit 1
+        fi
+      shell: bash
+
     - name: Setup Infracost
       uses: infracost/actions/setup@v3
       with:
@@ -48,7 +60,7 @@ runs:
     - name: Generate baseline plan
       run: |
         chmod +x ${{ github.action_path }}/scripts/generate_plan.sh
-        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.environment }}"
+        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.environment }}" "${{ inputs.cdktf }}"
       shell: bash
       working-directory: ${{ github.workspace }}
 
@@ -65,7 +77,7 @@ runs:
     - name: Generate PR plan
       run: |
         chmod +x ${{ github.action_path }}/scripts/generate_plan.sh
-        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.environment }}"
+        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.environment }}" "${{ inputs.cdktf }}"
       shell: bash
       working-directory: ${{ github.workspace }}
 
