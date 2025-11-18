@@ -15,4 +15,4 @@ infracost comment github \
   --repo="$REPO" \
   --github-token="$GITHUB_TOKEN" \
   --pull-request="$PR_NUMBER" \
-  --behavior=replace
+  --behavior=delete-and-new
