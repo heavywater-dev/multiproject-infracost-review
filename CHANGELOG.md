@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.0...v1.0.1) (2025-11-18)
+
+
+### Bug Fixes
+
+* action.yml ([#7](https://github.com/heavywater-dev/multiproject-infracost-review/issues/7)) ([44da550](https://github.com/heavywater-dev/multiproject-infracost-review/commit/44da55033fdef86a4e9b5b655c7fe0984086d947))
+
 ## 1.0.0 (2025-11-18)
 
 
