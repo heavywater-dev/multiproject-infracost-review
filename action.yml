@@ -61,14 +61,14 @@ runs:
     - name: Generate baseline plan
       run: |
         chmod +x ${{ github.action_path }}/scripts/generate_plan.sh
-        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.environment }}" "${{ inputs.cdktf }}"
+        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.cdktf }}"
       shell: bash
       working-directory: ${{ github.workspace }}
 
     - name: Generate Infracost cost estimate for baseline
       run: |
         chmod +x ${{ github.action_path }}/scripts/generate_infracost_estimate.sh
-        ${{ github.action_path }}/scripts/generate_infracost_estimate.sh "${{ inputs.path }}" "${{ inputs.environment }}" "/tmp/infracost-base.json"
+        ${{ github.action_path }}/scripts/generate_infracost_estimate.sh "${{ inputs.path }}" "/tmp/infracost-base.json"
       shell: bash
       working-directory: ${{ github.workspace }}
 
@@ -78,14 +78,14 @@ runs:
     - name: Generate PR plan
       run: |
         chmod +x ${{ github.action_path }}/scripts/generate_plan.sh
-        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.environment }}" "${{ inputs.cdktf }}"
+        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.cdktf }}"
       shell: bash
       working-directory: ${{ github.workspace }}
 
     - name: Generate Infracost cost estimate for PR
       run: |
         chmod +x ${{ github.action_path }}/scripts/generate_infracost_estimate.sh
-        ${{ github.action_path }}/scripts/generate_infracost_estimate.sh "${{ inputs.path }}" "${{ inputs.environment }}" "/tmp/infracost-pr.json"
+        ${{ github.action_path }}/scripts/generate_infracost_estimate.sh "${{ inputs.path }}" "/tmp/infracost-pr.json"
       shell: bash
       working-directory: ${{ github.workspace }}
 
