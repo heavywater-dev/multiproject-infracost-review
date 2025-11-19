@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.8...v1.0.9) (2025-11-19)
+
+
+### Bug Fixes
+
+* scripts after delete useless input ([#15](https://github.com/heavywater-dev/multiproject-infracost-review/issues/15)) ([587d040](https://github.com/heavywater-dev/multiproject-infracost-review/commit/587d0406f476adf0e5b901d671b41cc1d36d39fa))
+
 ## [1.0.8](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.7...v1.0.8) (2025-11-19)
 
 
