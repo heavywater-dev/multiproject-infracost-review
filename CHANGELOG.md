@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.4...v1.0.5) (2025-11-19)
+
+
+### Bug Fixes
+
+* estimate script ([#11](https://github.com/heavywater-dev/multiproject-infracost-review/issues/11)) ([35409c8](https://github.com/heavywater-dev/multiproject-infracost-review/commit/35409c8fb8b62910f64f77a9cb58a2b43e6c7b04))
+
 ## [1.0.4](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.3...v1.0.4) (2025-11-19)
 
 
