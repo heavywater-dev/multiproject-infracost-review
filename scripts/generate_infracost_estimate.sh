@@ -2,7 +2,7 @@
 set -e
 
 INFRA_PATH=$1
-ENVIRONMENT=$2
+export ENVIRONMENT=$2
 OUT_FILE=$3
 
 ROOT_DIR=$(pwd)
