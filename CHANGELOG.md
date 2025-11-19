@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.3...v1.0.4) (2025-11-19)
+
+
+### Bug Fixes
+
+* scripts environment variable ([#10](https://github.com/heavywater-dev/multiproject-infracost-review/issues/10)) ([9b882f9](https://github.com/heavywater-dev/multiproject-infracost-review/commit/9b882f96361ea3cc54b48e03e0f6f81332845e32))
+
 ## [1.0.3](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.2...v1.0.3) (2025-11-18)
 
 
