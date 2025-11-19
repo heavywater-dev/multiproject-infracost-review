@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.7...v1.0.8) (2025-11-19)
+
+
+### Code Refactoring
+
+* delete environment input ([#14](https://github.com/heavywater-dev/multiproject-infracost-review/issues/14)) ([cdc8182](https://github.com/heavywater-dev/multiproject-infracost-review/commit/cdc8182712de7e25996500d87a701ee86b2719dc))
+
 ## [1.0.7](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.6...v1.0.7) (2025-11-19)
 
 
