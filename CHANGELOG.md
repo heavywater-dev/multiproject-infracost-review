@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.5...v1.0.6) (2025-11-19)
+
+
+### Bug Fixes
+
+* create infracost config script ([#12](https://github.com/heavywater-dev/multiproject-infracost-review/issues/12)) ([ee8872a](https://github.com/heavywater-dev/multiproject-infracost-review/commit/ee8872ac01b377c2213b34ca05570719dc761f57))
+
 ## [1.0.5](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.4...v1.0.5) (2025-11-19)
 
 
