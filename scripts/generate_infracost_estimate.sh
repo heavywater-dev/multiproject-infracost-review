@@ -32,9 +32,11 @@ for project in $PROJECTS; do
       stack=$(basename "$stack_dir")
       plan_file="$stack_dir/plan.tfplan"
       if [ -f "$plan_file" ]; then
-        rel_plan=${plan_file#$ROOT_DIR/}
+        rel_stack_path=${stack_dir#$ROOT_DIR/}
+
         echo "  - name: ${project_name}-${stack}" >> "$INFRACOST_CONFIG"
-        echo "    terraform_plan_file: $rel_plan" >> "$INFRACOST_CONFIG"
+        echo "    path: $rel_stack_path" >> "$INFRACOST_CONFIG"
+        echo "    terraform_plan_file: plan.tfplan" >> "$INFRACOST_CONFIG"
       else
         echo "Plan file missing for $project_name/$stack (expected $plan_file), skipping entry." >&2
       fi
