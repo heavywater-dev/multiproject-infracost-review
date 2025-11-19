@@ -13,9 +13,6 @@ inputs:
     description: 'Whether to use CDKTF (true) or plain Terraform (false).'
     required: false
     default: 'true'
-  environment:
-    description: 'The environment to use for the Infracost breakdown (e.g., "production", "staging").'
-    required: false
   github-token:
     description: 'GitHub token used to post comments on pull requests.'
     required: true

@@ -45,19 +45,19 @@ jobs:
           pull-request-base: ${{ github.event.pull_request.base.ref }}
           pull-request-number: ${{ github.event.pull_request.number }}
           path: infra
-          environment: production
 ```
 
 ## Input Parameters
 
-| Parameter             | Required | Description                      | Example                                   |
-| --------------------- | -------- | -------------------------------- | ----------------------------------------- |
-| `infracost-api-key`   | ✅       | Infracost API key                | `${{ secrets.INFRACOST_API_KEY }}`        |
-| `github-token`        | ✅       | GitHub token for comments        | `${{ secrets.GITHUB_TOKEN }}`             |
-| `github-repository`   | ✅       | Repository in owner/repo format  | `${{ github.repository }}`                |
-| `pull-request-number` | ✅       | Pull request number              | `${{ github.event.pull_request.number }}` |
-| `path`                | ✅       | Path to CDKTF projects directory | `infra`                                   |
-| `environment`         | ❌       | Environment for synthesis        | `production`, `staging`, `dev`            |
+| Parameter             | Required | Default | Description                                 | Example                                     |
+| --------------------- | -------- | ------- | ------------------------------------------- | ------------------------------------------- |
+| `infracost-api-key`   | ✅       | -       | Infracost API key                           | `${{ secrets.INFRACOST_API_KEY }}`          |
+| `github-token`        | ✅       | -       | GitHub token for comments                   | `${{ secrets.GITHUB_TOKEN }}`               |
+| `github-repository`   | ✅       | -       | Repository in owner/repo format             | `${{ github.repository }}`                  |
+| `pull-request-base`   | ✅       | -       | Base branch for pull request                | `${{ github.event.pull_request.base.ref }}` |
+| `pull-request-number` | ✅       | -       | Pull request number                         | `${{ github.event.pull_request.number }}`   |
+| `path`                | ❌       | `infra` | Path to projects directory                  | `infra`                                     |
+| `cdktf`               | ❌       | `true`  | Use CDKTF (true) or plain Terraform (false) | `true`, `false`                             |
 
 ## Project Structure
 
@@ -125,7 +125,6 @@ jobs:
           pull-request-base: ${{ github.event.pull_request.base.ref }}
           pull-request-number: ${{ github.event.pull_request.number }}
           path: infra
-          environment: production
 ```
 
 ### 3. Configure Permissions
