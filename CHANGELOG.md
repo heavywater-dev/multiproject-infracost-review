@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.6...v1.0.7) (2025-11-19)
+
+
+### Bug Fixes
+
+* branch names ([#13](https://github.com/heavywater-dev/multiproject-infracost-review/issues/13)) ([e938a99](https://github.com/heavywater-dev/multiproject-infracost-review/commit/e938a99762bc865cee6f2aed9bfd3f7c95cec11d))
+
 ## [1.0.6](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.5...v1.0.6) (2025-11-19)
 
 
