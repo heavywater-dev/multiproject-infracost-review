@@ -22,24 +22,20 @@ INFRACOST_CONFIG="/tmp/infracost-config.yml"
 echo "version: 0.1" > "$INFRACOST_CONFIG"
 echo "projects:" >> "$INFRACOST_CONFIG"
 
-echo "Building Infracost config from Terraform plan files..."
+echo "Building Infracost config (HCL mode)..."
 for project in $PROJECTS; do
   project_name=$(basename "$project")
 
   if [ -d "$project/cdktf.out/stacks" ]; then
     for stack_dir in "$project"/cdktf.out/stacks/*/; do
       [ -d "$stack_dir" ] || continue
-      stack=$(basename "$stack_dir")
-      plan_file="$stack_dir/plan.tfplan"
-      if [ -f "$plan_file" ]; then
-        rel_stack_path=${stack_dir#$ROOT_DIR/}
+      stack_name=$(basename "$stack_dir")
 
-        echo "  - name: ${project_name}-${stack}" >> "$INFRACOST_CONFIG"
-        echo "    path: $rel_stack_path" >> "$INFRACOST_CONFIG"
-        echo "    terraform_plan_file: plan.tfplan" >> "$INFRACOST_CONFIG"
-      else
-        echo "Plan file missing for $project_name/$stack (expected $plan_file), skipping entry." >&2
-      fi
+      rel_path=${stack_dir#$ROOT_DIR/}
+      rel_path=${rel_path%/}
+
+      echo "  - path: $rel_path" >> "$INFRACOST_CONFIG"
+      echo "    name: ${project_name}-${stack_name}" >> "$INFRACOST_CONFIG"
     done
   else
     echo "No stacks directory for project $project_name" >&2
