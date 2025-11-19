@@ -2,8 +2,7 @@
 set -e
 
 INFRA_PATH=$1
-export ENVIRONMENT=$2
-USE_CDKTF=$3
+USE_CDKTF=$2
 
 ROOT_DIR=$(pwd)
 echo "Root directory: $ROOT_DIR"
