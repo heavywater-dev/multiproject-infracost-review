@@ -42,6 +42,16 @@ runs:
       with:
         api-key: ${{ inputs.infracost-api-key }}
 
+    - name: Setup jq for JSON processing
+      run: |
+        if ! command -v jq &> /dev/null; then
+          echo "Installing jq..."
+          sudo apt-get update && sudo apt-get install -y jq
+        else
+          echo "jq already installed"
+        fi
+      shell: bash
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
 
