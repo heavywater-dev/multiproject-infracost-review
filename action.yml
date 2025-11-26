@@ -68,16 +68,20 @@ runs:
       with:
         ref: '${{ inputs.pull-request-base }}'
 
-    - name: Generate baseline plan
+    - name: add rules for all scripts
       run: |
-        chmod +x ${{ github.action_path }}/scripts/generate_plan.sh
-        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.cdktf }}"
+        chmod -R +x ${{ github.action_path }}/scripts
+      shell: bash
+      working-directory: ${{ github.workspace }}
+
+    - name: Synth tf files for baseline
+      run: |
+        ${{ github.action_path }}/scripts/synth-tf-files.sh "${{ inputs.path }}" "${{ inputs.cdktf }}"
       shell: bash
       working-directory: ${{ github.workspace }}
 
     - name: Generate Infracost cost estimate for baseline
       run: |
-        chmod +x ${{ github.action_path }}/scripts/generate_infracost_estimate.sh
         ${{ github.action_path }}/scripts/generate_infracost_estimate.sh "${{ inputs.path }}" "/tmp/infracost-base.json"
       shell: bash
       working-directory: ${{ github.workspace }}
@@ -85,23 +89,20 @@ runs:
     - name: Checkout PR branch
       uses: actions/checkout@v5
 
-    - name: Generate PR plan
+    - name: Synth tf files for PR
       run: |
-        chmod +x ${{ github.action_path }}/scripts/generate_plan.sh
-        ${{ github.action_path }}/scripts/generate_plan.sh "${{ inputs.path }}" "${{ inputs.cdktf }}"
+        ${{ github.action_path }}/scripts/synth-tf-files.sh "${{ inputs.path }}" "${{ inputs.cdktf }}"
       shell: bash
       working-directory: ${{ github.workspace }}
 
     - name: Generate Infracost cost estimate for PR
       run: |
-        chmod +x ${{ github.action_path }}/scripts/generate_infracost_estimate.sh
         ${{ github.action_path }}/scripts/generate_infracost_estimate.sh "${{ inputs.path }}" "/tmp/infracost-pr.json"
       shell: bash
       working-directory: ${{ github.workspace }}
 
     - name: Generate Infracost diff
       run: |
-        chmod +x ${{ github.action_path }}/scripts/generate_infracost_diff.sh
         ${{ github.action_path }}/scripts/generate_infracost_diff.sh \
           --base-file "/tmp/infracost-base.json" \
           --head-file "/tmp/infracost-pr.json" \
@@ -111,7 +112,6 @@ runs:
 
     - name: Post Infracost comment to PR
       run: |
-        chmod +x ${{ github.action_path }}/scripts/generate_infracost_comment.sh
         ${{ github.action_path }}/scripts/generate_infracost_comment.sh \
           --repo "${{ inputs.github-repository }}" \
           --github-token "${{ inputs.github-token }}" \
