@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.11...v1.0.12) (2025-11-26)
+
+
+### Code Refactoring
+
+* extends infracost comment ([#18](https://github.com/heavywater-dev/multiproject-infracost-review/issues/18)) ([14bf564](https://github.com/heavywater-dev/multiproject-infracost-review/commit/14bf56443ad96e4e1fc2d73d25e912a51fde5f21))
+
 ## [1.0.11](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.10...v1.0.11) (2025-11-26)
 
 
