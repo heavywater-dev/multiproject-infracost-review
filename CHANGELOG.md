@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.12...v1.1.0) (2025-11-28)
+
+
+### Features
+
+* replace infracost comment for custom ([#19](https://github.com/heavywater-dev/multiproject-infracost-review/issues/19)) ([7c679d4](https://github.com/heavywater-dev/multiproject-infracost-review/commit/7c679d42cb124bda1d7745fd4354fa537e7b4268))
+
 ## [1.0.12](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.0.11...v1.0.12) (2025-11-26)
 
 
