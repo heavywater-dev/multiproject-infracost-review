@@ -29,13 +29,14 @@ if [ -f "$BASE" ] && [ -f "$HEAD" ]; then
 ---
 ## Total Infrastructure Cost
 
-| | Cost |
-|---|---|
-| **Base branch ($BASE_BRANCH)** | \$${BASE_TOTAL}/month |
+| Branch | Cost |
+|--------|------|
+| **$BASE_BRANCH** | \$${BASE_TOTAL}/month |
 | **PR branch** | \$${HEAD_TOTAL}/month |
 EOF
 
-  jq --arg tc "$TOTAL_COST_MARKDOWN" '. + {metadata: {totalCostComment: $tc}}' "$OUT" > "${OUT}.tmp" && mv "${OUT}.tmp" "$OUT"
+  jq --arg tc "$TOTAL_COST_MARKDOWN" '. + {metadata: {totalCostComment: $tc}}' "$OUT" > "${OUT}.tmp" \
+    && mv "${OUT}.tmp" "$OUT"
 
   echo "Added total cost info to diff JSON"
 fi

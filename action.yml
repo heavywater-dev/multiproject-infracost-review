@@ -116,5 +116,6 @@ runs:
           --repo "${{ inputs.github-repository }}" \
           --github-token "${{ inputs.github-token }}" \
           --pull-request "${{ inputs.pull-request-number }}"
+          --diff-file "/tmp/infracost-diff.json"
       shell: bash
       working-directory: ${{ github.workspace }}
