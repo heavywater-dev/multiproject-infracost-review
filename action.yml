@@ -115,7 +115,7 @@ runs:
         ${{ github.action_path }}/scripts/generate_infracost_comment.sh \
           --repo "${{ inputs.github-repository }}" \
           --github-token "${{ inputs.github-token }}" \
-          --pull-request "${{ inputs.pull-request-number }}"
+          --pull-request "${{ inputs.pull-request-number }}" \
           --diff-file "/tmp/infracost-diff.json"
       shell: bash
       working-directory: ${{ github.workspace }}
