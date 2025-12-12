@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.1.2...v1.1.3) (2025-12-12)
+
+
+### Bug Fixes
+
+* command in comment scripts ([#22](https://github.com/heavywater-dev/multiproject-infracost-review/issues/22)) ([7083389](https://github.com/heavywater-dev/multiproject-infracost-review/commit/7083389eb52e45e47eb632d0c1a8b520dcbb2aaa))
+
 ## [1.1.2](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.1.1...v1.1.2) (2025-12-12)
 
 
