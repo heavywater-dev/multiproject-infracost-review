@@ -5,9 +5,10 @@ replace_template_vars() {
   local total_cost="$2" 
   local diff_content="$3"
   
-  echo "$template" | sed \
-    -e "s|{{TOTAL_COST_TABLE}}|$total_cost|g" \
-    -e "s|{{DIFF_CONTENT}}|$diff_content|g"
+  template="${template//\{\{TOTAL_COST_TABLE\}\}/$total_cost}"
+  template="${template//\{\{DIFF_CONTENT\}\}/$diff_content}"
+  
+  echo "$template"
 }
 
 format_resource_row() {
