@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.1.1...v1.1.2) (2025-12-12)
+
+
+### Bug Fixes
+
+* comment diff parse ([#21](https://github.com/heavywater-dev/multiproject-infracost-review/issues/21)) ([5bf3dc5](https://github.com/heavywater-dev/multiproject-infracost-review/commit/5bf3dc543d5ca316344d13e054c7cfa0810653a1))
+
 ## [1.1.1](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.1.0...v1.1.1) (2025-11-28)
 
 
