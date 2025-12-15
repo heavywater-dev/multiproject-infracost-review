@@ -1,15 +1,20 @@
 <!-- infracost-total-comment -->
 
-# 💰 Infrastructure Cost Overview
+# 💰 Infrastructure Cost Analysis
+
+## 📈 **Monthly Cost Summary**
 
 {{TOTAL_COST_TABLE}}
 
 ---
 
-## Cost Diff
+<details>
+<summary><strong>🔍 Click to view detailed cost changes</strong></summary>
 
 {{DIFF_CONTENT}}
 
+</details>
+
 ---
 
-_This comment will auto-update when code changes._
+> 📅 _Last updated: {{TIMESTAMP}}_

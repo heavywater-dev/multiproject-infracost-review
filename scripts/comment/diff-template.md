@@ -1,17 +1,32 @@
-## {{PROJECT_NAME}}
+<details>
+<summary><strong>📁 {{PROJECT_NAME}} - {{PROJECT_COST_CHANGE}}</strong></summary>
 
 {{#HAS_RESOURCES}}
-| Resource | Type | Monthly Cost Change |
-|----------|------|---------------------|
+
+### 🔄 **Resource Changes**
+
 {{#RESOURCES}}
-| {{NAME}} | {{TYPE}} | {{COST_CHANGE}} |
+
+> **{{NAME}}**  
+> `{{TYPE}}`  
+> 💰 {{COST_CHANGE}}
+
 {{/RESOURCES}}
 
-**Total change for this project:** {{PROJECT_COST_CHANGE}}
+### 📊 **Project Total**
+
+```
+{{PROJECT_COST_CHANGE}}
+```
+
 {{/HAS_RESOURCES}}
 
 {{#NO_RESOURCES}}
-No resource changes in this project.
+
+> ✅ **No resource changes** in this project
+
 {{/NO_RESOURCES}}
+
+</details>
 
 ---
