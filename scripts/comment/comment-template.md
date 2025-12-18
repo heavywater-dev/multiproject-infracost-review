@@ -1,20 +1,12 @@
 <!-- infracost-total-comment -->
 
-# 💰 Infrastructure Cost Analysis
+## 💰 Infrastructure cost report
 
-## 📈 **Monthly Cost Summary**
-
-{{TOTAL_COST_TABLE}}
-
----
+{{SUMMARY}}
 
 <details>
-<summary><strong>🔍 Click to view detailed cost changes</strong></summary>
+<summary>Cost changes by project</summary>
 
 {{DIFF_CONTENT}}
 
 </details>
-
----
-
-> 📅 _Last updated: {{TIMESTAMP}}_
