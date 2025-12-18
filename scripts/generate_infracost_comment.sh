@@ -38,9 +38,11 @@ echo "Building cost summary..."
 
 format_summary() {
   jq -r '
-    "• Main branch: $" + (.metadata.baselineCost // 0 | tostring) + " / month\n" +
-    "• This PR:     $" + (.metadata.totalCost // 0 | tostring) + " / month\n" +
-    "• Diff:        $" + (.metadata.totalDiff // 0 | tostring) + " / month"
+    def num(x): if x == null then "0" else x end;
+
+    "• Main branch (before): $" + (num(.pastTotalMonthlyCost) | tostring) + " / month\n" +
+    "• This PR (after): $" + (num(.totalMonthlyCost) | tostring) + " / month\n" +
+    "• Monthly diff (after−before): $" + (num(.diffTotalMonthlyCost) | tostring) + " / month"
   ' "$1"
 }
 
