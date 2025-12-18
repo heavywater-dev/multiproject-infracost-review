@@ -1,15 +1,12 @@
 <!-- infracost-total-comment -->
 
-# 💰 Infrastructure Cost Overview
+## 💰 Infrastructure cost report
 
-{{TOTAL_COST_TABLE}}
+{{SUMMARY}}
 
----
-
-## Cost Diff
+<details>
+<summary>Cost changes by project</summary>
 
 {{DIFF_CONTENT}}
 
----
-
-_This comment will auto-update when code changes._
+</details>
