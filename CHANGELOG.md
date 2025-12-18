@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.1.4...v1.1.5) (2025-12-18)
+
+
+### Bug Fixes
+
+* json with cost estimate parse ([#24](https://github.com/heavywater-dev/multiproject-infracost-review/issues/24)) ([648b560](https://github.com/heavywater-dev/multiproject-infracost-review/commit/648b560073ff37e0ea7f082e4d1e1d9e3be69d28))
+
 ## [1.1.4](https://github.com/heavywater-dev/multiproject-infracost-review/compare/v1.1.3...v1.1.4) (2025-12-18)
 
 
